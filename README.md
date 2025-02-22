@@ -1,6 +1,6 @@
 
 <h1>Introduction to project :</h1>
-Ajmerconnect is a webapp specially design for Ajmer municipality under the SSIP hackathon 2023 , Ajmerconnect provides complete hospital appointment booking as well as complete ticket booking of all the public aminities of Ajmer , it also provide faclility to book and verfy ticket fromandmin side , and also hospital management from hospital side , it also provide details and direction 
+Ajmerconnect is a webapp specially design for Ajmer municipality , Ajmerconnect provides complete hospital appointment booking as well as complete ticket booking of all the public aminities of Ajmer , it also provide faclility to book and verfy ticket fromandmin side , and also hospital management from hospital side , it also provide details and direction 
 
 technology stack :
 php ,mysql ,javascript ,html ,css, python
