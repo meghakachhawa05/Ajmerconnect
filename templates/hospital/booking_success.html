@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Booking Confirmed — AjmerConnect{% endblock %}
+
+{% block content %}
+<div style="max-width:600px; margin:80px auto; padding:0 20px; text-align:center;">
+
+    <div style="background:#fff; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.1); padding:50px 40px;">
+        
+        <div style="width:80px; height:80px; background:#10b981; border-radius:50%; margin:0 auto 24px; display:flex; align-items:center; justify-content:center;">
+            <svg width="50" height="50" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 25 L20 40 L45 10"/>
+            </svg>
+        </div>
+
+        <h2 style="margin:0 0 12px; color:#1a1a2e;">Appointment Confirmed!</h2>
+        <p style="color:#6b7280; margin-bottom:30px;">Your appointment has been successfully booked.</p>
+
+        <div style="background:#f3f4f6; border-radius:10px; padding:24px; text-align:left; margin-bottom:30px;">
+            <div style="margin-bottom:12px;">
+                <strong style="color:#6b7280; font-size:13px;">Appointment ID:</strong><br>
+                <span style="font-size:20px; font-weight:700; color:#1a7a6e;">#{{ appointment.id }}</span>
+            </div>
+            <div style="margin-bottom:12px;">
+                <strong style="color:#6b7280; font-size:13px;">Doctor:</strong><br>
+                <span style="font-size:16px; color:#1a1a2e;">Dr. {{ appointment.slot.doctor.name }}</span>
+            </div>
+            <div style="margin-bottom:12px;">
+                <strong style="color:#6b7280; font-size:13px;">Specialization:</strong><br>
+                <span style="font-size:16px; color:#1a1a2e;">{{ appointment.slot.doctor.specialization }}</span>
+            </div>
+            <div style="margin-bottom:12px;">
+                <strong style="color:#6b7280; font-size:13px;">Date & Time:</strong><br>
+                <span style="font-size:16px; color:#1a1a2e;">{{ appointment.date }} at {{ appointment.slot.start_time }}</span>
+            </div>
+            <div>
+                <strong style="color:#6b7280; font-size:13px;">Status:</strong><br>
+                <span style="display:inline-block; padding:4px 12px; background:#fef3c7; color:#92400e; border-radius:12px; font-size:13px; font-weight:600;">
+                    {{ appointment.get_status_display }}
+                </span>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:12px; justify-content:center;">
+            <a href="{% url 'core:home' %}" 
+               style="padding:10px 24px; background:#f3f4f6; color:#1a1a2e; border-radius:8px; text-decoration:none; font-weight:600;">
+                Go to Home
+            </a>
+            <a href="{% url 'hospital:public_detail' appointment.slot.doctor.hospital.pk %}" 
+               style="padding:10px 24px; background:#1a7a6e; color:#fff; border-radius:8px; text-decoration:none; font-weight:600;">
+                View Hospital
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

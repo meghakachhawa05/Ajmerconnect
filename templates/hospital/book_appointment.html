@@ -1,0 +1,299 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Book Appointment — {{ hospital.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .booking-container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .booking-card {
+        background: #fff;
+        border: 3px solid #1a1a2e;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .booking-card h2 {
+        text-align: center;
+        margin: 0 0 30px;
+        font-size: 28px;
+        color: #1a1a2e;
+    }
+
+    .form-section {
+        margin-bottom: 30px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+        align-items: center;
+    }
+
+    .form-row label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-row input {
+        padding: 10px 14px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 6px;
+        font-size: 15px;
+        max-width: 500px;
+    }
+
+    .form-row input:focus {
+        outline: none;
+        border-color: #1a7a6e;
+    }
+
+    /* Slot Selection Table */
+    .slot-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .slot-table thead {
+        background: #f3f4f6;
+    }
+
+    .slot-table th {
+        padding: 12px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        border: 1px solid #d1d5db;
+    }
+
+    .slot-table td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #d1d5db;
+        font-size: 14px;
+    }
+
+    .slot-table tbody tr:hover {
+        background: #f9fafb;
+    }
+
+    .slot-indicator {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 14px;
+        color: #fff;
+    }
+
+    .slot-green { background: #10b981; }
+    .slot-yellow { background: #fbbf24; color: #000; }
+    .slot-red { background: #ef4444; }
+
+    .slot-radio {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .submit-btn {
+        display: block;
+        margin: 30px auto 0;
+        padding: 12px 40px;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+        background: #15803d;
+    }
+
+    .submit-btn:disabled {
+        background: #9ca3af;
+        cursor: not-allowed;
+    }
+
+    .error-message {
+        color: #dc2626;
+        font-size: 13px;
+        margin-top: 4px;
+    }
+
+    .info-message {
+        background: #dbeafe;
+        border-left: 4px solid #3b82f6;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #1e40af;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="booking-container">
+
+    <div class="booking-card">
+        <h2>{{ hospital.name }}</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="info-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" id="bookingForm">
+            {% csrf_token %}
+
+            <!-- Personal Details -->
+            <div class="form-section">
+                <div class="form-row">
+                    <label>Name</label>
+                    <div>
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <div class="error-message">{{ form.name.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Contact</label>
+                    <div>
+                        {{ form.contact }}
+                        {% if form.contact.errors %}
+                            <div class="error-message">{{ form.contact.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Adhar Number</label>
+                    <div>
+                        {{ form.aadhar_number }}
+                        {% if form.aadhar_number.errors %}
+                            <div class="error-message">{{ form.aadhar_number.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Age</label>
+                    <div>
+                        {{ form.age }}
+                        {% if form.age.errors %}
+                            <div class="error-message">{{ form.age.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label>Address</label>
+                    <div>
+                        {{ form.address }}
+                        {% if form.address.errors %}
+                            <div class="error-message">{{ form.address.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slot Selection -->
+            <div class="form-section">
+                <h3 style="margin-bottom:12px;">Select Available Slot</h3>
+
+                {% if slots %}
+                <table class="slot-table">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Speciality</th>
+                            <th>Date</th>
+                            <th>Time From</th>
+                            <th>Time To</th>
+                            <th>Slots</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for slot in slots %}
+                        <tr>
+                            <td>Dr. {{ slot.doctor.name }}</td>
+                            <td>{{ slot.doctor.specialization }}</td>
+                            <td>{{ slot.date }}</td>
+                            <td>{{ slot.start_time }}</td>
+                            <td>{{ slot.end_time }}</td>
+                            <td>
+                                {% with available=slot.available_slots %}
+                                    {% if available > 5 %}
+                                        <span class="slot-indicator slot-green">{{ available }}</span>
+                                    {% elif available > 0 %}
+                                        <span class="slot-indicator slot-yellow">{{ available }}</span>
+                                    {% else %}
+                                        <span class="slot-indicator slot-red">0</span>
+                                    {% endif %}
+                                {% endwith %}
+                            </td>
+                            <td>
+                                {% if slot.available_slots > 0 %}
+                                <input type="radio" name="slot_id" value="{{ slot.id }}" 
+                                       class="slot-radio" required>
+                                {% else %}
+                                <span style="color:#9ca3af;">Full</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p style="color:#9ca3af; text-align:center; padding:20px;">
+                    No available slots at this time.
+                </p>
+                {% endif %}
+            </div>
+
+            <!-- Hidden field for slot_id -->
+            {{ form.slot_id }}
+
+            <!-- Submit Button -->
+            {% if slots %}
+            <button type="submit" class="submit-btn">Submit Appointment</button>
+            {% endif %}
+
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Sync radio button with hidden field
+    document.querySelectorAll('input[name="slot_id"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelector('input[name="slot_id"][type="hidden"]').value = this.value;
+        });
+    });
+</script>
+{% endblock %}

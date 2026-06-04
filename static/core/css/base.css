@@ -1,0 +1,526 @@
+/* =========================
+   ABOUT PAGE CLEAN STYLE
+========================= */
+
+.about-hero {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+    border-radius: 16px;
+    margin-bottom: 60px;
+}
+
+.about-section {
+    margin-bottom: 60px;
+}
+
+.light-bg {
+    background: #f3f4f6;
+    padding: 60px 30px;
+    border-radius: 16px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-side {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.stats-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.stats-row h3 {
+    color: var(--primary);
+}
+
+.card-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.center {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* ================= CONTACT PAGE CLEAN ================= */
+/* ================= HERO ================= */
+
+.contact-hero {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 100px 20px;          /* More space */
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 100px;         /* Strong separation */
+}
+
+
+/* ================= LAYOUT ================= */
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;  /* Better proportion */
+    gap: 80px;                         /* More breathing space */
+    align-items: start;
+    margin-bottom: 100px;
+}
+
+
+/* ================= CARD STYLING ================= */
+
+.contact-form-box,
+.contact-info-box,
+.why-card {
+    background: var(--white);
+    padding: 40px;                    /* More space inside */
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05); /* Subtle premium border */
+    transition: 0.3s ease;
+}
+
+.contact-form-box:hover,
+.contact-info-box:hover,
+.why-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* ================= FORM STRUCTURE ================= */
+
+.form-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+
+/* ================= INPUTS ================= */
+
+input,
+select,
+textarea {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-top: 8px;
+    width: 100%;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+/* ================= BUTTON ================= */
+
+.btn-submit {
+    background: var(--primary);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+
+/* ================= INFO BOX ================= */
+
+.contact-info-box .info-item {
+    margin-bottom: 30px;
+}
+
+
+/* ================= WHY SECTION ================= */
+
+.why-section {
+    margin-bottom: 100px;
+}
+
+.why-section h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 28px;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.why-card {
+    text-align: center;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
+/* =========================
+   ROOT VARIABLES (COLORS)
+========================= */
+:root {
+    --primary: #0f3d3e;
+    --primary-light: #1f6f70;
+    --background: #f9fafb;
+    --white: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --primary-gradient: linear-gradient(135deg, #0f3d3e, #1f6f78);
+}
+
+/* =========================
+   RESET + BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--background);
+    color: var(--text-main);
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ✅ FIXED MAIN CONTENT */
+main.content {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.top-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.main-navbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--text-main);
+    padding: 6px 2px;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a.active {
+    color: var(--primary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary);
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav-auth a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.nav-auth .btn.signup {
+    background: var(--primary);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.nav-auth .btn.signup:hover {
+    background: var(--primary-light);
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero-section {
+    background: linear-gradient(
+        rgba(15, 61, 62, 0.75),
+        rgba(15, 61, 62, 0.75)
+    ),
+    url("/static/core/img/hero.jpg") center/cover no-repeat;
+    border-radius: 16px;
+    padding: 80px 20px;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 40px;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* =========================
+   CARDS / ENTITIES
+========================= */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+.entity-card {
+    background: var(--white);
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.entity-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.entity-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.entity-card h3 {
+    padding: 16px 16px 6px;
+    color: var(--primary);
+}
+
+.entity-card p {
+    padding: 0 16px 16px;
+    color: var(--text-muted);
+}
+
+/* =========================
+   MAP SECTION
+========================= */
+.map-section {
+    margin-top: 60px;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+#map {
+    width: 100%;
+    height: 260px;
+    border-radius: 12px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: var(--primary-light);
+}
+
+/* =========================
+   AUTH PAGES (Centered Only)
+========================= */
+.auth-container {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--white);
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.auth-card h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.auth-card .form-group {
+    margin-bottom: 16px;
+}
+
+.auth-card input,
+.auth-card textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 0.9rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    background: var(--primary);
+    color: var(--white);
+    padding: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .main-navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+
+    main.content {
+        padding: 20px;
+    }
+}

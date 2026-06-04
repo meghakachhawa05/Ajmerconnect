@@ -1,0 +1,27 @@
+{% extends "amenity/admin/base.html" %}
+
+{% block title %}Amenity Dashboard{% endblock %}
+
+{% block content %}
+<h2>Welcome to Amenity Admin Dashboard</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card shadow p-3">
+            <h5>Total Amenities</h5>
+            <h2>{{ total_amenities }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow p-3">
+            <h5>Featured</h5>
+            <h2>{{ featured_count }}</h2>
+            <a href="{% url 'amenity:admin_list' %}" class="btn btn-primary mb-2">
+    <i class="fas fa-building"></i> Manage Amenities
+</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

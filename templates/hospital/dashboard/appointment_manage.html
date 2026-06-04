@@ -1,0 +1,59 @@
+{% extends 'hospital/dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Manage Appointments{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Manage Appointments</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Symptoms</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>
+                    {{ appointment.patient.get_full_name|default:appointment.patient.username }}
+                </td>
+
+                <td>
+                    Dr. {{ appointment.slot.doctor.name }}
+                </td>
+
+                <td>{{ appointment.slot.date }}</td>
+
+                <td>
+                    {{ appointment.slot.start_time }} - {{ appointment.slot.end_time }}
+                </td>
+
+                <td>{{ appointment.get_status_display }}</td>
+
+                <td>{{ appointment.symptoms }}</td>
+
+                <td>
+                    {% if user.hospital_admin and appointment.status != 'cancelled' %}
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Cancel
+                            </button>
+                        </form>
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">No

@@ -1,0 +1,16 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+        <button type="submit"
+                style="background: green; color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 6px; cursor: pointer;">
+            Save
+        </button>
+
+        <a href="{% url 'amenity:list' %}"
+           style="background: #888; color: white; padding: 0.5rem 1.5rem; border-radius: 6px; text-decoration: none;">
+            Cancel
+        </a>
+    </div>
+</form>

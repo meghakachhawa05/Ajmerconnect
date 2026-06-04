@@ -1,0 +1,26 @@
+{% extends 'hospital/dashboard/base.html' %}
+
+{% block title %}Create Slot{% endblock %}
+{% block page_title %}Create Slot{% endblock %}
+
+{% block content %}
+<div class="card">
+
+    <form method="post" action="{% url 'hospital:create_slot' %}">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div style="margin-top: 15px;">
+            <button type="submit" class="btn">
+                Create Slot
+            </button>
+
+            <a href="{% url 'hospital:slot_manage' %}" class="btn btn-sm">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

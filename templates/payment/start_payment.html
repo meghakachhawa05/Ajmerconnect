@@ -1,0 +1,30 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Start Payment{% endblock %}
+
+{% block content %}
+
+<h3>Booking Summary</h3>
+
+<div style="border:1px solid #ddd; padding:15px; max-width:500px;">
+    <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+    <p><strong>Visitor Name:</strong> {{ booking.visitor_name }}</p>
+    <p><strong>Date:</strong> {{ booking.booking_date }}</p>
+    <p><strong>Total Tickets:</strong> {{ booking.num_tickets }}</p>
+    <p><strong>Total Amount:</strong> ₹{{ amount }}</p>
+</div>
+
+<br>
+
+<form method="POST" action="{% url 'payment:payment_success' %}">
+    {% csrf_token %}
+    
+    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+
+    <button type="submit" style="padding:10px 20px;">
+        pay now
+    </button>
+</form>
+
+{% endblock %}

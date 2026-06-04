@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Payment{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <h2>Ajmer Connect – Payment</h2>
+    <hr>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <hr>
+    <p>© {{ year|default:2025 }} Ajmer Connect</p>
+</footer>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

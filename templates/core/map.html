@@ -1,0 +1,595 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}City Map — AjmerConnect{% endblock %}
+
+{% block extra_css %}
+<!-- Leaflet CSS - No API Key Required -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+    /* ===== MAP PAGE LAYOUT ===== */
+    .map-page {
+        padding: 0;
+        margin: 0 -30px;
+    }
+
+    /* ===== SEARCH BAR ===== */
+    .map-search-bar {
+        display: flex;
+        gap: 10px;
+        padding: 16px 24px;
+        background: #fff;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .map-search-bar input {
+        flex: 1;
+        padding: 10px 16px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .map-search-bar input:focus {
+        border-color: #1a7a6e;
+    }
+
+    .map-search-bar button {
+        padding: 10px 24px;
+        background: #1a7a6e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .map-search-bar button:hover {
+        background: #155f56;
+    }
+
+    /* ===== FILTER BUTTONS ===== */
+    .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 14px 24px;
+        background: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .filter-btn {
+        padding: 7px 18px;
+        border: 2px solid #d1d5db;
+        border-radius: 20px;
+        background: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #374151;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: #1a7a6e;
+        border-color: #1a7a6e;
+        color: #fff;
+    }
+
+    /* ===== MAP + INFO PANEL ===== */
+    .map-body {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        height: calc(100vh - 210px);
+        min-height: 500px;
+    }
+
+    /* ===== MAP ===== */
+    #map {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    /* ===== RIGHT INFO PANEL ===== */
+    .info-panel {
+        background: #fff;
+        border-left: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    .info-panel-header {
+        padding: 16px 20px;
+        background: #1a7a6e;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .info-panel-body {
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    /* Table */
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .info-table thead tr {
+        background: #f3f4f6;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .info-table th {
+        padding: 10px 12px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 700;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .info-table td {
+        padding: 10px 12px;
+        font-size: 13px;
+        border-bottom: 1px solid #f3f4f6;
+        vertical-align: middle;
+    }
+
+    .info-table tr:hover {
+        background: #f9fafb;
+        cursor: pointer;
+    }
+
+    .info-table tr.highlighted {
+        background: #ecfdf5;
+    }
+
+    .place-name {
+        font-weight: 600;
+        color: #1a1a2e;
+        font-size: 13px;
+    }
+
+    .place-type-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-size: 11px;
+        font-weight: 600;
+        background: #e0f2f1;
+        color: #1a7a6e;
+    }
+
+    .place-type-badge.hospital {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .action-links {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .action-links a {
+        font-size: 12px;
+        color: #1a7a6e;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .action-links a:hover {
+        text-decoration: underline;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 40px 20px;
+        color: #9ca3af;
+        font-size: 14px;
+    }
+
+    /* ===== LEAFLET POPUP CUSTOM ===== */
+    .leaflet-popup-content-wrapper {
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .custom-popup strong {
+        font-size: 14px;
+        color: #1a1a2e;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .custom-popup span {
+        font-size: 12px;
+        color: #6b7280;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .custom-popup a {
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-right: 8px;
+    }
+
+    .custom-popup a.detail-link {
+        color: #1a7a6e;
+    }
+
+    .custom-popup a.book-link {
+        color: #dc2626;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+        .map-body {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+
+        #map {
+            height: 350px;
+        }
+
+        .info-panel {
+            border-left: none;
+            border-top: 1px solid #e5e7eb;
+            max-height: 350px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="map-page">
+
+    <!-- ===== SEARCH BAR ===== -->
+    <div class="map-search-bar" style="position:relative;">
+        <input type="text" id="searchInput" placeholder="Search hospitals, parks, temples, lakes..." autocomplete="off"/>
+        <button onclick="searchPlaces()">Search</button>
+        <div id="searchSuggestions" style="display:none;position:absolute;top:100%;left:24px;right:100px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.12);z-index:9999;max-height:260px;overflow-y:auto;"></div>
+    </div>
+
+    <!-- ===== FILTER BUTTONS ===== -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterPlaces('all', this)">All</button>
+        <button class="filter-btn" onclick="filterPlaces('hospital', this)">🏥 Hospital</button>
+        <button class="filter-btn" onclick="filterPlaces('lake', this)">💧 Lake</button>
+        <button class="filter-btn" onclick="filterPlaces('museum', this)">🏛️ Museum</button>
+        <button class="filter-btn" onclick="filterPlaces('historical', this)">🏰 Historical Place</button>
+        <button class="filter-btn" onclick="filterPlaces('university', this)">🎓 University</button>
+        <button class="filter-btn" onclick="filterPlaces('temple', this)">🛕 Temple</button>
+        <button class="filter-btn" onclick="filterPlaces('townhall', this)">🏢 Townhall</button>
+        <button class="filter-btn" onclick="filterPlaces('park', this)">🌳 Park</button>
+        <button class="filter-btn" onclick="filterPlaces('school', this)">🏫 School</button>
+    </div>
+
+    <!-- ===== MAP + INFO PANEL ===== -->
+    <div class="map-body">
+
+        <!-- Leaflet Map -->
+        <div id="map"></div>
+
+        <!-- Right Info Panel -->
+        <div class="info-panel">
+            <div class="info-panel-header">📍 More Info</div>
+            <div class="info-panel-body">
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Links</th>
+                        </tr>
+                    </thead>
+                    <tbody id="placeTableBody">
+                        <!-- Filled by JS -->
+                    </tbody>
+                </table>
+                <div class="no-results" id="noResults" style="display:none;">
+                    No places found.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+<!-- Leaflet JS - No API Key Required -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // ===== DATA FROM DJANGO =====
+    let allPlaces = JSON.parse('{{ places|escapejs }}');
+    let filteredPlaces = [...allPlaces];
+
+    let map;
+    let markers = [];
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    // ===== CUSTOM MARKER ICONS =====
+    const hospitalIcon = L.divIcon({
+        html: '🏥',
+        className: '',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -14]
+    });
+
+    const amenityIcon = L.divIcon({
+        html: '📍',
+        className: '',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -14]
+    });
+
+    // Type-specific icons
+    const typeIcons = {
+        hospital: '🏥',
+        lake: '💧',
+        museum: '🏛️',
+        historical: '🏰',
+        university: '🎓',
+        temple: '🛕',
+        townhall: '🏢',
+        park: '🌳',
+        school: '🏫',
+    };
+
+    function getIcon(place) {
+        const emoji = typeIcons[place.type] || typeIcons[place.amenity_type] || '📍';
+        return L.divIcon({
+            html: emoji,
+            className: '',
+            iconSize: [28, 28],
+            iconAnchor: [14, 14],
+            popupAnchor: [0, -14]
+        });
+    }
+
+    // ===== INIT MAP =====
+    function initMap() {
+        // Ajmer city center
+        map = L.map('map').setView([26.4499, 74.6399], 13);
+
+        // CartoDB tiles - FREE, works on localhost
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        renderAll();
+    }
+
+    // ===== RENDER ALL =====
+    function renderAll() {
+        applyFilters();
+        renderMarkers();
+        renderTable();
+    }
+
+    // ===== APPLY FILTERS =====
+    function applyFilters() {
+        filteredPlaces = allPlaces.filter(place => {
+            const matchType = currentFilter === 'all' ||
+                place.type === currentFilter ||
+                place.amenity_type === currentFilter;
+
+            const matchSearch = currentSearch === '' ||
+                place.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                (place.address && place.address.toLowerCase().includes(currentSearch.toLowerCase()));
+
+            return matchType && matchSearch;
+        });
+    }
+
+    // ===== RENDER MARKERS =====
+    function renderMarkers() {
+        // Clear old markers
+        markers.forEach(m => {
+            map.removeLayer(m.marker);
+        });
+        markers = [];
+
+        filteredPlaces.forEach((place, index) => {
+            if (!place.latitude || !place.longitude) return;
+
+            const marker = L.marker(
+                [parseFloat(place.latitude), parseFloat(place.longitude)],
+                { icon: getIcon(place) }
+            ).addTo(map);
+
+            // Popup content
+            const bookLink = place.book_url
+                ? `<a href="${place.book_url}" class="book-link">Book Slot →</a>`
+                : '';
+
+            marker.bindPopup(`
+                <div class="custom-popup" style="min-width:200px; padding:4px;">
+                    <strong>${place.name}</strong>
+                    <span>${place.address || ''}</span>
+                    <a href="${place.detail_url}" class="detail-link">View Details →</a>
+                    ${bookLink}
+                </div>
+            `);
+
+            marker.on('click', () => {
+                // Highlight table row
+                document.querySelectorAll('.info-table tbody tr').forEach(r => r.classList.remove('highlighted'));
+                const row = document.getElementById('row-' + index);
+                if (row) {
+                    row.classList.add('highlighted');
+                    row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+
+            markers.push({ marker, index });
+        });
+    }
+
+    // ===== RENDER TABLE =====
+    function renderTable() {
+        const tbody = document.getElementById('placeTableBody');
+        const noResults = document.getElementById('noResults');
+
+        if (filteredPlaces.length === 0) {
+            tbody.innerHTML = '';
+            noResults.style.display = 'block';
+            return;
+        }
+
+        noResults.style.display = 'none';
+        tbody.innerHTML = filteredPlaces.map((place, index) => `
+            <tr id="row-${index}" onclick="focusPlace(${index})">
+                <td class="place-name">${place.name}</td>
+                <td>
+                    <span class="place-type-badge ${place.type === 'hospital' ? 'hospital' : ''}">
+                        ${typeIcons[place.type] || typeIcons[place.amenity_type] || '📍'} ${place.type || place.amenity_type || ''}
+                    </span>
+                </td>
+                <td>
+                    <div class="action-links">
+                        <a href="${place.detail_url}">View Details</a>
+                        ${place.book_url ? `<a href="${place.book_url}" style="color:#dc2626;">Book Slot</a>` : ''}
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    // ===== FOCUS PLACE ON MAP =====
+    function focusPlace(index) {
+        const place = filteredPlaces[index];
+        if (!place.latitude || !place.longitude || !map) return;
+
+        map.flyTo(
+            [parseFloat(place.latitude), parseFloat(place.longitude)],
+            16,
+            { animate: true, duration: 0.8 }
+        );
+
+        // Open popup
+        const markerObj = markers.find(m => m.index === index);
+        if (markerObj) {
+            markerObj.marker.openPopup();
+        }
+    }
+
+    // ===== FILTER FUNCTION =====
+    function filterPlaces(type, btn) {
+        currentFilter = type;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderAll();
+    }
+
+    // ===== SEARCH DB PLACES (local) =====
+    function searchPlaces() {
+        currentSearch = document.getElementById('searchInput').value.trim();
+        document.getElementById('searchSuggestions').style.display = 'none';
+        renderAll();
+    }
+
+    // ===== NOMINATIM SEARCH (Free - No API Key) =====
+    let searchTimeout = null;
+    let searchMarker = null;
+
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const query = this.value.trim();
+        currentSearch = query;
+        renderAll();
+
+        clearTimeout(searchTimeout);
+
+        if (query.length < 3) {
+            document.getElementById('searchSuggestions').style.display = 'none';
+            return;
+        }
+
+        searchTimeout = setTimeout(() => {
+            fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query + ' Ajmer Rajasthan')}&format=json&limit=5&addressdetails=1`, {
+                headers: { 'Accept-Language': 'en' }
+            })
+            .then(res => res.json())
+            .then(data => {
+                const suggestions = document.getElementById('searchSuggestions');
+
+                if (!data || data.length === 0) {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+
+                suggestions.innerHTML = data.map(item => `
+                    <div onclick="goToLocation(${item.lat}, ${item.lon}, \`${item.display_name.split(',').slice(0,2).join(',')}\`)"
+                         style="padding:10px 16px;cursor:pointer;border-bottom:1px solid #f3f4f6;font-size:13px;color:#374151;"
+                         onmouseover="this.style.background='#f9fafb'"
+                         onmouseout="this.style.background='#fff'">
+                        📍 ${item.display_name.split(',').slice(0,3).join(',')}
+                    </div>
+                `).join('');
+                suggestions.style.display = 'block';
+            })
+            .catch(() => {});
+        }, 500);
+    });
+
+    // ===== GO TO SEARCHED LOCATION =====
+    function goToLocation(lat, lng, name) {
+        map.flyTo([parseFloat(lat), parseFloat(lng)], 16, { animate: true, duration: 0.8 });
+
+        // Remove old search marker
+        if (searchMarker) map.removeLayer(searchMarker);
+
+        searchMarker = L.marker([parseFloat(lat), parseFloat(lng)], {
+            icon: L.divIcon({ html: '🔍', className: '', iconSize: [28, 28], iconAnchor: [14, 14], popupAnchor: [0, -14] })
+        })
+        .addTo(map)
+        .bindPopup(`<div class="custom-popup"><strong>${name}</strong></div>`)
+        .openPopup();
+
+        document.getElementById('searchInput').value = name;
+        document.getElementById('searchSuggestions').style.display = 'none';
+    }
+
+    // Search on Enter
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchPlaces();
+    });
+
+    // Hide suggestions on outside click
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.map-search-bar')) {
+            document.getElementById('searchSuggestions').style.display = 'none';
+        }
+    });
+
+    // ===== START MAP =====
+    document.addEventListener('DOMContentLoaded', initMap);
+</script>
+{% endblock %}

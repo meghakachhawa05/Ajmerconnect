@@ -1,0 +1,85 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Doctor{% else %}Add Doctor{% endif %} — AjmerConnect{% endblock %}
+
+{% block content %}
+<div style="padding:30px; max-width:600px; margin:0 auto;">
+
+    <div style="margin-bottom:24px;">
+        <h2 style="font-size:24px; font-weight:700; color:#1a1a2e;">
+            👨‍⚕️ {% if form.instance.pk %}Edit Doctor{% else %}Add Doctor{% endif %}
+        </h2>
+        <p style="color:#6b7280; font-size:14px; margin-top:4px;">
+            {% if form.instance.pk %}Update doctor information{% else %}Add a new doctor to your hospital{% endif %}
+        </p>
+    </div>
+
+    <div style="background:#fff; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.08); padding:32px;">
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div style="background:#fee2e2; color:#991b1b; padding:12px 16px; border-radius:8px; margin-bottom:20px; font-size:14px;">
+                ⚠️ Please fix the errors below.
+            </div>
+            {% endif %}
+
+            {% for field in form %}
+            <div style="margin-bottom:20px;">
+                <label style="display:block; font-size:14px; font-weight:600; color:#374151; margin-bottom:6px;">
+                    {{ field.label }}
+                    {% if field.field.required %}<span style="color:#dc2626;">*</span>{% endif %}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <div style="color:#dc2626; font-size:12px; margin-top:4px;">{{ field.errors.0 }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div style="display:flex; gap:12px; margin-top:24px;">
+                <button type="submit" style="
+                    background:#1a7a6e;
+                    color:#fff;
+                    border:none;
+                    padding:12px 32px;
+                    border-radius:8px;
+                    font-size:15px;
+                    font-weight:600;
+                    cursor:pointer;
+                ">
+                    {% if form.instance.pk %}Update Doctor{% else %}Add Doctor{% endif %}
+                </button>
+                <a href="{% url 'hospital:dashboard_home' %}" style="
+                    background:#f3f4f6;
+                    color:#374151;
+                    padding:12px 24px;
+                    border-radius:8px;
+                    font-size:15px;
+                    font-weight:600;
+                    text-decoration:none;
+                    display:inline-block;
+                ">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<style>
+    input, select, textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1.5px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        box-sizing: border-box;
+        color: #374151;
+    }
+    input:focus, select:focus, textarea:focus {
+        border-color: #1a7a6e;
+    }
+</style>
+
+{% endblock %}

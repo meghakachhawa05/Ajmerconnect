@@ -1,0 +1,92 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+
+{% block title %}Available Doctors{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Available Doctors</h2>
+
+    {% if doctors %}
+
+    <div class="row">
+
+        {% for doctor in doctors %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">
+                        Dr. {{ doctor.name }}
+                    </h5>
+
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ doctor.specialization }}
+                    </h6>
+
+                    <p class="card-text">
+
+                        <strong>Hospital:</strong>
+                        {{ doctor.hospital.name }}
+
+                        <br>
+
+                        <strong>Experience:</strong>
+                        {{ doctor.experience }} years
+
+                        <br>
+
+                        <strong>Consultation Fee:</strong>
+                        ₹{{ doctor.consultation_fee }}
+
+                        <br>
+
+                        <strong>Status:</strong>
+
+                        {% if doctor.is_active %}
+                            <span class="text-success">
+                                Available
+                            </span>
+                        {% else %}
+                            <span class="text-danger">
+                                Not Available
+                            </span>
+                        {% endif %}
+
+                    </p>
+
+                    <a href="{% url 'hospital:doctor_edit' doctor.id %}"
+                       class="btn btn-primary btn-sm">
+
+                        Edit Doctor
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info">
+
+        No doctors are currently available.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

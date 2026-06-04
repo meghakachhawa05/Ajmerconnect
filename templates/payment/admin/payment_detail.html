@@ -1,0 +1,34 @@
+{% extends "payment/base.html" %}
+
+{% block title %}Payment Detail{% endblock %}
+
+{% block content %}
+
+<h2>Payment Detail</h2>
+
+<div style="border:1px solid #ccc; padding:15px; max-width:600px;">
+
+    <p><strong>Booking ID:</strong> {{ payment.booking.id }}</p>
+    <p><strong>Visitor Name:</strong> {{ payment.booking.visitor_name }}</p>
+    <p><strong>Booking Date:</strong> {{ payment.booking.booking_date }}</p>
+
+    <hr>
+
+    <p><strong>Amount:</strong> ₹{{ payment.amount }}</p>
+    <p><strong>Status:</strong> {{ payment.status|title }}</p>
+
+    <p><strong>Razorpay Order ID:</strong><br>{{ payment.razorpay_order_id = "FAKE_ORDER_1" }}</p>
+    <p><strong>Razorpay Payment ID:</strong><br>{{ payment.razorpay_payment_id = "FAKE_PAY_1"}}</p>
+
+    <p><strong>Created At:</strong> {{ payment.created_at|date:"d M Y H:i" }}</p>
+
+</div>
+
+<br>
+
+<a href="{% url 'payment_list' %}">
+    ← Back to Payment List
+</a>
+
+{% endblock %}
+

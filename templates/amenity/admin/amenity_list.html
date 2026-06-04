@@ -1,0 +1,143 @@
+{% extends "amenity/admin/base.html" %}
+
+{% block title %}Manage Amenities{% endblock %}
+
+{% block content %}
+
+<style>
+.container {
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #0f3d3e;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.admin-table th {
+    background-color: #0f3d3e;
+    color: white;
+}
+
+.btn-view {
+    padding: 6px 10px;
+    background: #0f3d3e;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    padding: 6px 10px;
+    background: #f39c12;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.btn-delete {
+    padding: 6px 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-view:hover {
+    background: #1f6f70;
+}
+
+.btn-edit:hover {
+    background: #d68910;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+}
+
+.table-img {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+</style>
+
+<div class="container">
+    <h2 class="page-title">Admin – Amenities</h2>
+
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for amenity in amenities %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+
+                <td>
+                    {% if amenity.image %}
+                        <img src="{{ amenity.image.url }}" class="table-img">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+
+                <td>{{ amenity.name }}</td>
+                <td>{{ amenity.get_type_display }}</td>
+                <td>{{ amenity.address|truncatechars:40 }}</td>
+
+                <td>
+                    <a href="{% url 'amenity:detail' amenity.id %}" class="btn-view">View</a>
+                    <a href="{% url 'amenity:edit' amenity.id %}" class="btn-edit">Edit</a>
+
+                    <form method="POST" action="{% url 'amenity:delete' amenity.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-delete" onclick="return confirmDelete();">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align:center;">No amenities found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+function confirmDelete() {
+    return confirm("Are you sure you want to delete this amenity?");
+}
+</script>
+
+{% endblock %}

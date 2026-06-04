@@ -1,0 +1,43 @@
+{% extends "booking/base.html" %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>My Bookings</h1>
+
+    {% if bookings %}
+
+        <ul class="booking-list">
+
+            {% for booking in bookings %}
+
+            <li>
+
+                <strong>{{ booking.amenity.name }}</strong><br>
+
+                Date: {{ booking.booking_date }}<br>
+
+                Tickets: {{ booking.num_tickets }}<br>
+
+                Status: {{ booking.status }}<br>
+
+                Payment ID: {{ booking.payment_id }}
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>You have no bookings yet.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

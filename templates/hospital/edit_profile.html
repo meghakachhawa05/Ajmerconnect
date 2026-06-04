@@ -1,0 +1,66 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+
+{% block title %}Edit Hospital Profile{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Edit Hospital Profile</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="name">Hospital Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value="{{ hospital.name }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea
+                id="address"
+                name="address"
+                rows="3"
+                required
+            >{{ hospital.address }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value="{{ hospital.phone }}"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value="{{ hospital.email }}"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Save Changes
+        </button>
+
+        <a href="{% url 'hospital:hospital_dashboard' %}"
+           class="btn btn-danger">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}

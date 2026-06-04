@@ -1,0 +1,131 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<div style="display:flex; min-height:80vh; background:#f4f4f4;">
+
+    <!-- SIDEBAR -->
+    <div style="width:260px;
+                background:#0f3d3e;
+                color:white;
+                padding:30px 20px;">
+
+        <h2 style="margin-bottom:40px;">
+            Ticket Admin
+        </h2>
+
+        <div style="display:flex;
+                    flex-direction:column;
+                    gap:20px;">
+
+            <a href="{% url 'booking:admin_dashboard' %}"
+               style="color:white;
+                      text-decoration:none;
+                      font-size:18px;">
+               Dashboard
+            </a>
+
+            <a href="{% url 'booking:admin_verify_ticket' %}"
+               style="color:white;
+                      text-decoration:none;
+                      font-size:18px;">
+               Verify Ticket
+            </a>
+
+            <a href="{% url 'booking:admin_booking_list' %}"
+               style="color:white;
+                      text-decoration:none;
+                      font-size:18px;">
+               All Bookings
+            </a>
+
+            <hr style="border-color:rgba(255,255,255,0.3);">
+
+            <a href="{% url 'amenity:admin_add' %}"
+               style="color:white;
+                      text-decoration:none;
+                      font-size:18px;">
+               Add Amenity
+            </a>
+
+            <a href="{% url 'amenity:add_to_map' %}"
+               style="color:white;
+                      text-decoration:none;
+                      font-size:18px;">
+               Add To Map
+            </a>
+
+            <a href="{% url 'amenity:admin_list' %}"
+               style="color:white;
+                      text-decoration:none;
+                      font-size:18px;">
+               Manage Amenities
+            </a>
+
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div style="flex:1; padding:40px;">
+
+        <h1 style="margin-bottom:30px;
+                   color:#0f3d3e;">
+            Welcome to Ticket Admin Dashboard
+        </h1>
+
+        <div style="display:flex;
+                    gap:25px;
+                    flex-wrap:wrap;">
+
+            <!-- CARD -->
+            <div style="background:white;
+                        width:250px;
+                        padding:25px;
+                        border-radius:16px;
+                        box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+
+                <h3 style="color:#0f3d3e;">Total Bookings</h3>
+                <h1>{{ total_bookings }}</h1>
+
+            </div>
+
+            <div style="background:white;
+                        width:250px;
+                        padding:25px;
+                        border-radius:16px;
+                        box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+
+                <h3 style="color:#0f3d3e;">Pending</h3>
+                <h1>{{ pending }}</h1>
+
+            </div>
+
+            <div style="background:white;
+                        width:250px;
+                        padding:25px;
+                        border-radius:16px;
+                        box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+
+                <h3 style="color:#0f3d3e;">Confirmed</h3>
+                <h1>{{ confirmed }}</h1>
+
+            </div>
+
+            <div style="background:white;
+                        width:250px;
+                        padding:25px;
+                        border-radius:16px;
+                        box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+
+                <h3 style="color:#0f3d3e;">Used</h3>
+                <h1>{{ used }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

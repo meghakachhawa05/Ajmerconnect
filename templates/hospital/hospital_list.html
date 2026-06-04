@@ -1,0 +1,41 @@
+{% extends "hospital/base.html" %}
+{% load static %}
+
+{% block title %}Hospitals{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Hospitals</h2>
+
+    {% if hospitals %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hospital in hospitals %}
+                <tr>
+                    <td>{{ hospital.name }}</td>
+                    <td>{{ hospital.address }}</td>
+                    <td>{{ hospital.phone }}</td>
+                    <td>
+                        "<a href="{% url 'hospital:dashboard_home' %}">
+
+                           class="btn btn-sm">
+                            View
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hospitals found.</p>
+    {% endif %}
+</div>
+{% endblock %}

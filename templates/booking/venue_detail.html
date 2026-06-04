@@ -1,0 +1,25 @@
+{% extends "booking/base.html" %}
+
+{% block title %}{{ amenity.name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1>{{ amenity.name }}</h1>
+
+    <p>{{ amenity.description }}</p>
+
+    <p>
+        <strong>Price:</strong> ₹{{ amenity.price }}
+    </p>
+
+    <a href="{% url 'booking:create_booking' amenity.id %}" class="btn">
+        Book Now
+    </a>
+
+    <a href="{% url 'booking:amenity_list' %}" class="btn">
+        Back to Amenities
+    </a>
+
+</div>
+{% endblock %}

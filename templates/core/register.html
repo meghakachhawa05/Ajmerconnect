@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Register – AjmerConnect{% endblock %}
+
+{% block content %}
+
+<div style="max-width:500px; margin:40px auto; background:white; padding:30px; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+
+    <h2 style="margin-bottom:20px; text-align:center;">Create Account</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div style="margin-bottom:15px;">
+            <label>Full Name</label>
+            <input type="text" name="full_name" required style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <label>Email</label>
+            <input type="email" name="email" required style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <label>Contact Number</label>
+            <input type="text" name="contact" required style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <label>Age</label>
+            <input type="number" name="age" required style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <label>Aadhar Number</label>
+            <input type="text" name="aadhar_no" maxlength="12" required style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <label>Address</label>
+            <textarea name="address" rows="3" required style="width:100%; padding:8px;"></textarea>
+        </div>
+
+        <div style="margin-bottom:15px;">
+            <label>Password</label>
+            <input type="password" name="password" required style="width:100%; padding:8px;">
+        </div>
+
+        <div style="margin-bottom:20px;">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required style="width:100%; padding:8px;">
+        </div>
+
+        <button type="submit" class="btn-primary" style="width:100%;">
+            Register
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}

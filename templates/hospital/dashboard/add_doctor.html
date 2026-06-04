@@ -1,0 +1,26 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+
+{% block title %}Add Doctor{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Add New Doctor</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-success">Add Doctor</button>
+        <a href="{% url 'hospital:doctor_list' %}" class="btn btn-danger">Cancel</a>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

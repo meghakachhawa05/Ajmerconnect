@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+
+{% block title %}Payment Failed{% endblock %}
+
+{% block content %}
+
+<div style="max-width:600px; margin:auto; text-align:center;">
+
+    <h2 style="color:red;">Payment Failed ❌</h2>
+
+    <p>Unfortunately, your payment could not be completed.</p>
+
+    <hr>
+
+    {% if booking %}
+        <p><strong>Booking ID:</strong> {{ booking.id }}</p>
+        <p><strong>Amount:</strong> ₹{{ booking.total_amount }}</p>
+    {% endif %}
+
+    <br>
+
+    {% if booking %}
+        <a href="{% url 'pyment_pay' booking.id %}"
+           style="padding:10px 20px; background:#ff9800; color:white; text-decoration:none;">
+            Retry Payment
+        </a>
+    {% endif %}
+
+    <br><br>
+
+    <a href="/" style="text-decoration:none;">
+        Back to Home
+    </a>
+
+</div>
+
+{% endblock %}

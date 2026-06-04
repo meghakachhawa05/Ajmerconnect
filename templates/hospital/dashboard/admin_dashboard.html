@@ -1,0 +1,151 @@
+{% extends 'hospital/dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Admin Dashboard</h2>
+
+    <div class="stats">
+        <div class="stat-item">
+            <h3>Total Hospitals</h3>
+            <p>{{ hospitals.count }}</p>
+        </div>
+        <div class="stat-item">
+            <h3>Total Doctors</h3>
+            <p>{{ doctors.count }}</p>
+        </div>
+        <div class="stat-item">
+            <h3>Total Appointments</h3>
+            <p>{{ appointments.count }}</p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= HOSPITALS ================= -->
+<div class="card">
+    <h3>Hospitals</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Doctors</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hospital in hospitals %}
+            <tr>
+                <td>{{ hospital.name }}</td>
+                <td>{{ hospital.address }}</td>
+                <td>{{ hospital.phone }}</td>
+                <td>{{ hospital.email }}</td>
+                <td>{{ hospital.doctor_set.count }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hospitals found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- ================= DOCTORS ================= -->
+<div class="card">
+    <h3>Doctors</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Hospital</th>
+                <th>Specialization</th>
+                <th>Experience</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>Dr. {{ doctor.name }}</td>
+                <td>{{ doctor.hospital.name }}</td>
+                <td>{{ doctor.specialization }}</td>
+                <td>{{ doctor.experience }} years</td>
+                <td>
+                    {% if doctor.is_active %}
+                        Active
+                    {% else %}
+                        Inactive
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No doctors found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- ================= APPOINTMENTS ================= -->
+<div class="card">
+    <h3>Recent Appointments</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Hospital</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.patient.get_full_name|default:appointment.patient.username }}</td>
+                <td>Dr. {{ appointment.slot.doctor.name }}</td>
+                <td>{{ appointment.slot.doctor.hospital.name }}</td>
+                <td>{{ appointment.slot.date }}</td>
+                <td>{{ appointment.slot.start_time }} - {{ appointment.slot.end_time }}</td>
+                <td>{{ appointment.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No appointments found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+}
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    flex: 1;
+    margin: 0 1rem;
+}
+.stat-item h3 {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+.stat-item p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+}
+</style>
+{% endblock %}

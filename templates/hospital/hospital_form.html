@@ -1,0 +1,39 @@
+{% extends 'hospital/base.html' %}
+{% load static %}
+
+{% block title %}
+    {% if hospital %}Edit Hospital{% else %}Add Hospital{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        {% if hospital %}Edit{% else %}Add{% endif %} Hospital
+                    </h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        {{ form.as_p }}
+
+                        <button type="submit" class="btn btn-success">
+                            Save
+                        </button>
+
+                        <a href="{% url 'hospital:hospital_dashboard' %}"
+                           class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

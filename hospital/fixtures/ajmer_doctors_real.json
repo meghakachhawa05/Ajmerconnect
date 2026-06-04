@@ -1,0 +1,158 @@
+[
+  {
+    "model": "hospital.doctor",
+    "pk": 1,
+    "fields": {
+      "hospital": 2,
+      "name": "Jyoti Phatnani",
+      "specialization": "General Physician",
+      "experience": 35,
+      "consultation_fee": "100.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 2,
+    "fields": {
+      "hospital": 5,
+      "name": "Ankur Mathur",
+      "specialization": "General Physician",
+      "experience": 10,
+      "consultation_fee": "200.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 3,
+    "fields": {
+      "hospital": 3,
+      "name": "Raj Kumar Gupta",
+      "specialization": "General Physician",
+      "experience": 3,
+      "consultation_fee": "200.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 4,
+    "fields": {
+      "hospital": 4,
+      "name": "Vivek Mathur",
+      "specialization": "Cardiologist",
+      "experience": 15,
+      "consultation_fee": "500.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 5,
+    "fields": {
+      "hospital": 6,
+      "name": "Abhishek Saxena",
+      "specialization": "Orthopedic",
+      "experience": 8,
+      "consultation_fee": "400.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 6,
+    "fields": {
+      "hospital": 8,
+      "name": "Manoj Kumar",
+      "specialization": "Gastroenterologist",
+      "experience": 23,
+      "consultation_fee": "300.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 7,
+    "fields": {
+      "hospital": 7,
+      "name": "Puneet Jain",
+      "specialization": "General Physician",
+      "experience": 10,
+      "consultation_fee": "300.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 8,
+    "fields": {
+      "hospital": 9,
+      "name": "Ajay Shankar Garg",
+      "specialization": "General Physician",
+      "experience": 15,
+      "consultation_fee": "350.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 9,
+    "fields": {
+      "hospital": 11,
+      "name": "Anand Agarwal",
+      "specialization": "General Physician",
+      "experience": 12,
+      "consultation_fee": "300.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 10,
+    "fields": {
+      "hospital": 11,
+      "name": "Monika Maheshwari",
+      "specialization": "General Physician",
+      "experience": 10,
+      "consultation_fee": "250.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 11,
+    "fields": {
+      "hospital": 11,
+      "name": "Aashish Agarwal",
+      "specialization": "General Physician",
+      "experience": 8,
+      "consultation_fee": "300.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 12,
+    "fields": {
+      "hospital": 1,
+      "name": "Rajesh Pathak",
+      "specialization": "General Physician",
+      "experience": 10,
+      "consultation_fee": "300.00",
+      "is_active": true
+    }
+  },
+  {
+    "model": "hospital.doctor",
+    "pk": 13,
+    "fields": {
+      "hospital": 1,
+      "name": "R K Gokhroo",
+      "specialization": "General Physician",
+      "experience": 20,
+      "consultation_fee": "300.00",
+      "is_active": true
+    }
+  }
+]

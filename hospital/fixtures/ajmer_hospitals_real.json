@@ -1,0 +1,377 @@
+[
+  {
+    "model": "hospital.hospital",
+    "pk": 1,
+    "fields": {
+      "name": "JLN Medical College & Hospital",
+      "admin": null,
+      "phone": "0145-2627000",
+      "email": "jlnhospital@rajasthan.gov.in",
+      "address": "JLN Medical College Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4423,
+      "longitude": 74.6391
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 2,
+    "fields": {
+      "name": "Prakash Clinic",
+      "admin": null,
+      "phone": "0145-2621100",
+      "email": "prakashclinic.ajmer@gmail.com",
+      "address": "Shrinagar Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4489,
+      "longitude": 74.6423
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 3,
+    "fields": {
+      "name": "Gupta Multispeciality Hospital",
+      "admin": null,
+      "phone": "07795695879",
+      "email": "guptamultispeciality.ajmer@gmail.com",
+      "address": "Gyan Vihar Colony, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4534,
+      "longitude": 74.6356
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 4,
+    "fields": {
+      "name": "Mittal Hospital & Research Centre",
+      "admin": null,
+      "phone": "07490044249",
+      "email": "mittalhospital.ajmer@gmail.com",
+      "address": "Ajmer Club Chowk, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4478,
+      "longitude": 74.6401
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 5,
+    "fields": {
+      "name": "Ankur Mathur Physician Clinic",
+      "admin": null,
+      "phone": "0145-2623456",
+      "email": "ankurmathur.clinic@gmail.com",
+      "address": "Kundan Nagar, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4512,
+      "longitude": 74.6378
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 6,
+    "fields": {
+      "name": "Jeevan Jyoti Hospital",
+      "admin": null,
+      "phone": "0145-2634567",
+      "email": "jeevanjyoti.ajmer@gmail.com",
+      "address": "Lajpat Nagar, Ramganj, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4589,
+      "longitude": 74.6334
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 7,
+    "fields": {
+      "name": "Vaishali Hospital & Welno Health Care",
+      "admin": null,
+      "phone": "0145-2645678",
+      "email": "vaishali.hospital@gmail.com",
+      "address": "Vaishali Nagar, Ajmer, Rajasthan 305004",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4689,
+      "longitude": 74.6156
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 8,
+    "fields": {
+      "name": "Mediciti Clinic",
+      "admin": null,
+      "phone": "07411642199",
+      "email": "medicitclinic.ajmer@gmail.com",
+      "address": "303 Vijay Sarita Enclave, Panchsheel Nagar, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4456,
+      "longitude": 74.6389
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 9,
+    "fields": {
+      "name": "Arihant Clinic Ajmer",
+      "admin": null,
+      "phone": "08460489093",
+      "email": "arihantclinic.ajmer@gmail.com",
+      "address": "Ganj, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4534,
+      "longitude": 74.6412
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 10,
+    "fields": {
+      "name": "Sewarth Homeopathy Hospital",
+      "admin": null,
+      "phone": "0145-2656789",
+      "email": "sewarth.homeopathy@gmail.com",
+      "address": "Vaishali Nagar, Ajmer, Rajasthan 305004",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4701,
+      "longitude": 74.6134
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 11,
+    "fields": {
+      "name": "Government District Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2425001",
+      "email": "districthospital.ajmer@rajasthan.gov.in",
+      "address": "Madar Gate, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4512,
+      "longitude": 74.6378
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 12,
+    "fields": {
+      "name": "Fortis Escorts Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2990000",
+      "email": "fortis.ajmer@fortishealthcare.com",
+      "address": "Jaipur Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4312,
+      "longitude": 74.6523
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 13,
+    "fields": {
+      "name": "Apollo Clinic Ajmer",
+      "admin": null,
+      "phone": "0145-2980000",
+      "email": "apolloclinic.ajmer@apolloclinic.com",
+      "address": "Kutchery Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4534,
+      "longitude": 74.6401
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 14,
+    "fields": {
+      "name": "Shankar Ayurveda Hospital",
+      "admin": null,
+      "phone": "08460459099",
+      "email": "shankarayurveda.ajmer@gmail.com",
+      "address": "Civil Lines, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4445,
+      "longitude": 74.6467
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 15,
+    "fields": {
+      "name": "Aravali Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2667890",
+      "email": "aravalihospital.ajmer@gmail.com",
+      "address": "Vaishali Nagar, Ajmer, Rajasthan 305004",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4712,
+      "longitude": 74.6112
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 16,
+    "fields": {
+      "name": "Sanjivani Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2678901",
+      "email": "sanjivani.ajmer@gmail.com",
+      "address": "Anasagar Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4678,
+      "longitude": 74.6223
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 17,
+    "fields": {
+      "name": "Pushkar General Hospital",
+      "admin": null,
+      "phone": "0145-2772345",
+      "email": "pushkargeneralhospital@gmail.com",
+      "address": "Pushkar, Ajmer, Rajasthan 305022",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4889,
+      "longitude": 74.5534
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 18,
+    "fields": {
+      "name": "City Care Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2689012",
+      "email": "citycare.ajmer@gmail.com",
+      "address": "Civil Lines, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4445,
+      "longitude": 74.6467
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 19,
+    "fields": {
+      "name": "Navjeevan Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2690123",
+      "email": "navjeevan.ajmer@gmail.com",
+      "address": "Madar Gate, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4512,
+      "longitude": 74.6367
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 20,
+    "fields": {
+      "name": "Sunrise Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2745678",
+      "email": "sunrisehospital.ajmer@gmail.com",
+      "address": "Beawar Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4234,
+      "longitude": 74.6289
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 21,
+    "fields": {
+      "name": "Bansal Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2723456",
+      "email": "bansalhospital.ajmer@gmail.com",
+      "address": "Jaipur Bypass Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4289,
+      "longitude": 74.6578
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 22,
+    "fields": {
+      "name": "Lifeline Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2701234",
+      "email": "lifeline.ajmer@gmail.com",
+      "address": "Pushkar Road, Ajmer, Rajasthan 305004",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4756,
+      "longitude": 74.6067
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 23,
+    "fields": {
+      "name": "Nasirabad Community Hospital",
+      "admin": null,
+      "phone": "0145-2783456",
+      "email": "nasirabadhospital@gmail.com",
+      "address": "Nasirabad, Ajmer, Rajasthan 305601",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.3123,
+      "longitude": 74.7389
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 24,
+    "fields": {
+      "name": "Marwar Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2756789",
+      "email": "marwarhospital.ajmer@gmail.com",
+      "address": "Kishangarh Road, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4167,
+      "longitude": 74.6634
+    }
+  },
+  {
+    "model": "hospital.hospital",
+    "pk": 25,
+    "fields": {
+      "name": "Mata Bhagwati Hospital Ajmer",
+      "admin": null,
+      "phone": "0145-2712345",
+      "email": "matabhagwati.ajmer@gmail.com",
+      "address": "Kesarganj, Ajmer, Rajasthan 305001",
+      "is_active": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "latitude": 26.4534,
+      "longitude": 74.6423
+    }
+  }
+]

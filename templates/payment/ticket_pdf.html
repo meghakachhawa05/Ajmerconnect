@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Booking Ticket</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding:20px; }
+        h2 { color: #0d6efd; }
+        p { font-size: 16px; }
+        .info { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h2>Booking Confirmation</h2>
+    <div class="info">
+        <strong>Booking ID:</strong> {{ booking.id }}
+    </div>
+    <div class="info">
+        <strong>Visitor Name:</strong> {{ booking.visitor_name }}
+    </div>
+    <div class="info">
+        <strong>Booking Date:</strong> {{ booking.booking_date }}
+    </div>
+    <div class="info">
+        <strong>Amount Paid:</strong> ₹{{ booking.total_amount }}
+    </div>
+    <p>Thank you for booking with Ajmer Connect!</p>
+</body>
+</html>

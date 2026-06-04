@@ -1,0 +1,17 @@
+{% extends "booking/base.html" %}
+
+{% block title %}Booking Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to Booking Section</h1>
+
+    <p>
+        Check available amenities and make your bookings easily.
+    </p>
+
+    <a href="{% url 'booking:amenity_list' %}" class="btn">
+        View Amenities
+    </a>
+</div>
+{% endblock %}

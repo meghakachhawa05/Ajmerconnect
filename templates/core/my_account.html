@@ -1,0 +1,306 @@
+{% extends 'core/base.html' %}
+
+{% block title %}My Account — AjmerConnect{% endblock %}
+
+{% block content %}
+<div style="padding: 30px; max-width: 900px; margin: 0 auto;">
+
+    <!-- ===== PROFILE HEADER ===== -->
+    <div style="background: linear-gradient(135deg, #1a7a6e, #155f56); border-radius: 16px; padding: 32px; color: #fff; margin-bottom: 24px; display: flex; align-items: center; gap: 24px;">
+        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px;">
+            👤
+        </div>
+        <div>
+            <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 4px;">
+                {{ user.first_name|default:user.username }}
+            </h2>
+
+            <p style="opacity: 0.85; font-size: 14px;">
+                {{ user.email }}
+            </p>
+
+            {% if user.contact %}
+            <p style="opacity: 0.85; font-size: 14px;">
+                📞 {{ user.contact }}
+            </p>
+            {% endif %}
+
+            <!-- ROLE -->
+            <p style="margin-top: 6px; font-size: 13px; background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 12px; border-radius: 20px;">
+                {{ user.role|title }}
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== PERSONAL INFO ===== -->
+    <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 24px; margin-bottom: 24px;">
+
+        <h3 style="font-size: 18px; font-weight: 700; color: #1a1a2e; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f3f4f6;">
+            📋 Personal Information
+        </h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+
+            <div>
+                <p style="font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
+                    Full Name
+                </p>
+
+                <p style="font-size: 15px; color: #1a1a2e; font-weight: 500;">
+                    {{ user.first_name|default:"Not provided" }}
+                </p>
+            </div>
+
+            <div>
+                <p style="font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
+                    Email
+                </p>
+
+                <p style="font-size: 15px; color: #1a1a2e; font-weight: 500;">
+                    {{ user.email }}
+                </p>
+            </div>
+
+            <div>
+                <p style="font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
+                    Contact
+                </p>
+
+                <p style="font-size: 15px; color: #1a1a2e; font-weight: 500;">
+                    {{ user.contact|default:"Not provided" }}
+                </p>
+            </div>
+
+            <div>
+                <p style="font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
+                    Age
+                </p>
+
+                <p style="font-size: 15px; color: #1a1a2e; font-weight: 500;">
+                    {{ user.age|default:"Not provided" }}
+                </p>
+            </div>
+
+            <div>
+                <p style="font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
+                    Address
+                </p>
+
+                <p style="font-size: 15px; color: #1a1a2e; font-weight: 500;">
+                    {{ user.address|default:"Not provided" }}
+                </p>
+            </div>
+
+            <div>
+                <p style="font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; margin-bottom: 4px;">
+                    Member Since
+                </p>
+
+                <p style="font-size: 15px; color: #1a1a2e; font-weight: 500;">
+                    {{ user.date_joined|date:"d M Y" }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================= -->
+    <!-- ===== PATIENT ONLY ===== -->
+    <!-- ========================= -->
+
+     {% if user.role == "user" %}
+
+
+    <!-- ===== MY HOSPITAL APPOINTMENTS ===== -->
+    <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 24px; margin-bottom: 24px;">
+
+        <h3 style="font-size: 18px; font-weight: 700; color: #1a1a2e; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f3f4f6;">
+            🏥 My Hospital Appointments
+        </h3>
+
+        {% if appointments %}
+
+        <table style="width: 100%; border-collapse: collapse;">
+
+            <thead>
+                <tr style="background: #f9fafb;">
+                    <th style="padding: 12px 16px;">Hospital</th>
+                    <th style="padding: 12px 16px;">Doctor</th>
+                    <th style="padding: 12px 16px;">Date</th>
+                    <th style="padding: 12px 16px;">Time</th>
+                    <th style="padding: 12px 16px;">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for appointment in appointments %}
+
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+
+                    <td style="padding: 12px 16px;">
+                        {{ appointment.slot.doctor.hospital.name }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                        Dr. {{ appointment.slot.doctor.name }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                        {{ appointment.date }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                        {{ appointment.slot.start_time }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+
+                        {% if appointment.status == 'confirmed' %}
+                        <span style="background: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 20px;">
+                            ✅ Confirmed
+                        </span>
+
+                        {% elif appointment.status == 'pending' %}
+                        <span style="background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 20px;">
+                            ⏳ Pending
+                        </span>
+
+                        {% elif appointment.status == 'cancelled' %}
+                        <span style="background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 20px;">
+                            ❌ Cancelled
+                        </span>
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div style="text-align: center; padding: 40px 20px; color: #9ca3af;">
+            <div style="font-size: 40px; margin-bottom: 12px;">🏥</div>
+
+            <p style="font-size: 14px;">
+                No appointments yet.
+            </p>
+
+            <a href="{% url 'hospital:public_list' %}"
+               style="display: inline-block; margin-top: 12px; background: #1a7a6e; color: #fff; padding: 10px 24px; border-radius: 8px; text-decoration: none;">
+                Book Appointment
+            </a>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- ===== MY TICKETS ===== -->
+    <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 24px;">
+
+        <h3 style="font-size: 18px; font-weight: 700; color: #1a1a2e; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #f3f4f6;">
+            🎟️ My Tickets
+        </h3>
+
+        {% if tickets %}
+
+        <table style="width: 100%; border-collapse: collapse;">
+
+            <thead>
+                <tr style="background: #f9fafb;">
+                    <th style="padding: 12px 16px;">Place</th>
+                    <th style="padding: 12px 16px;">Date</th>
+                    <th style="padding: 12px 16px;">Quantity</th>
+                    <th style="padding: 12px 16px;">Amount</th>
+                    <th style="padding: 12px 16px;">Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for ticket in tickets %}
+
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+
+                    <td style="padding: 12px 16px;">
+                        {{ ticket.ticket.amenity.name }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                        {{ ticket.booking_date }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                        {{ ticket.quantity }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+                        ₹{{ ticket.total_amount }}
+                    </td>
+
+                    <td style="padding: 12px 16px;">
+
+                        {% if ticket.status == 'confirmed' %}
+                        <span style="background: #d1fae5; color: #065f46; padding: 4px 10px; border-radius: 20px;">
+                            ✅ Confirmed
+                        </span>
+
+                        {% elif ticket.status == 'pending' %}
+                        <span style="background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 20px;">
+                            ⏳ Pending
+                        </span>
+
+                        {% elif ticket.status == 'cancelled' %}
+                        <span style="background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 20px;">
+                            ❌ Cancelled
+                        </span>
+
+                        {% elif ticket.status == 'used' %}
+                        <span style="background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px;">
+                            ✔️ Used
+                        </span>
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div style="text-align: center; padding: 40px 20px; color: #9ca3af;">
+
+            <div style="font-size: 40px; margin-bottom: 12px;">
+                🎟️
+            </div>
+
+            <p style="font-size: 14px;">
+                No tickets yet.
+            </p>
+
+            <a href="{% url 'amenity:list' %}"
+               style="display: inline-block; margin-top: 12px; background: #1a7a6e; color: #fff; padding: 10px 24px; border-radius: 8px; text-decoration: none;">
+                Book Tickets
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}About Us - AjmerConnect{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="about-hero">
+    <h1>About AjmerConnect</h1>
+    <p>Your complete city guide for Ajmer</p>
+</section>
+
+<!-- MISSION -->
+<section class="about-section">
+    <div class="about-grid">
+        <div>
+            <h2>Our Mission</h2>
+            <p>
+                To provide a comprehensive digital platform that connects the citizens of Ajmer
+                with essential services and amenities.
+            </p>
+
+            <div class="stats-row">
+                <div>
+                    <h3>{{ hospital_count|default:"25" }}+</h3>
+                    <p>Hospitals</p>
+                </div>
+                <div>
+                    <h3>{{ amenity_count|default:"150" }}+</h3>
+                    <p>Amenities</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-side">
+            <h3>Building a Connected Ajmer</h3>
+            <p>Empowering citizens through digital connectivity.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="about-section light-bg">
+    <h2 class="center">What We Offer</h2>
+
+    <div class="card-grid">
+        <div class="custom-card">
+            <h4>Healthcare Services</h4>
+            <p>Find hospitals and book appointments easily.</p>
+        </div>
+
+        <div class="custom-card">
+            <h4>Booking System</h4>
+            <p>Book parks and government amenities online.</p>
+        </div>
+
+        <div class="custom-card">
+            <h4>Interactive Map</h4>
+            <p>Explore all services through our smart map.</p>
+        </div>
+
+        <div class="custom-card">
+            <h4>Smart Search</h4>
+            <p>Quickly find exactly what you need.</p>
+        </div>
+
+        <div class="custom-card">
+            <h4>Mobile Friendly</h4>
+            <p>Optimized for all devices.</p>
+        </div>
+
+        <div class="custom-card">
+            <h4>Secure Platform</h4>
+            <p>Your data is safe with us.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

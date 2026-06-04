@@ -1,0 +1,43 @@
+{% extends 'hospital/dashboard/base.html' %}
+
+{% block title %}Appointments{% endblock %}
+{% block page_title %}Appointments{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Appointments</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.patient.name }}</td>
+                <td>Dr. {{ appt.slot.doctor.name }}</td>
+                <td>{{ appt.slot.date }}</td>
+                <td>{{ appt.slot.start_time }} - {{ appt.slot.end_time }}</td>
+                <td>
+                    {% if appt.status == 'pending' %}
+                        <a href="{% url 'hospital:update_appointment_status' appt.id 'confirmed' %}" class="btn btn-sm">Confirm</a>
+                        <a href="{% url 'hospital:update_appointment_status' appt.id 'cancelled' %}" class="btn btn-sm">Cancel</a>
+                    {% elif appt.status == 'confirmed' %}
+                        <span class="badge success">Confirmed</span>
+                    {% elif appt.status == 'cancelled' %}
+                        <span class="badge danger">Cancelled</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No appointments found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

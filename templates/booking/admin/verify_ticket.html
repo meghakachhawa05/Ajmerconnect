@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h2>Verify Ticket</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="payment_id" placeholder="Enter Payment ID">
+    <button type="submit">Verify</button>
+</form>
+
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
+
+{% if success %}
+<p style="color:green">{{ success }}</p>
+{% endif %}
+
+{% if booking %}
+<hr>
+<p>User: {{ booking.user }}</p>
+<p>Venue: {{ booking.venue }}</p>
+<p>Status: {{ booking.status }}</p>
+{% endif %}
+{% endblock %}

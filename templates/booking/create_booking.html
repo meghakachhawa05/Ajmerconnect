@@ -1,0 +1,102 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Book Ticket — {{ amenity.name }}{% endblock %}
+
+{% block content %}
+<div style="padding: 30px; max-width: 600px; margin: 0 auto;">
+
+    <!-- Header -->
+    <div style="margin-bottom: 24px;">
+        <h2 style="font-size: 24px; font-weight: 700; color: #1a1a2e;">🎟️ Book Ticket</h2>
+        <p style="color: #6b7280; font-size: 14px; margin-top: 4px;">{{ amenity.name }}</p>
+    </div>
+
+    <!-- Amenity Info -->
+    <div style="background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #065f46; margin-bottom: 8px;">{{ amenity.name }}</h3>
+        <p style="font-size: 13px; color: #374151; margin-bottom: 4px;">📍 {{ amenity.address }}</p>
+        <p style="font-size: 18px; font-weight: 700; color: #1a7a6e; margin-top: 8px;">
+            ₹{{ amenity.ticket_price }} <span style="font-size: 13px; color: #6b7280; font-weight: 400;">per person</span>
+        </p>
+    </div>
+
+    <!-- Messages -->
+    {% if messages %}
+    {% for message in messages %}
+    <div style="background: #fee2e2; color: #991b1b; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 14px;">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Booking Form -->
+    <div style="background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 32px;">
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Visitor Name -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">
+                    Visitor Name <span style="color: #dc2626;">*</span>
+                </label>
+                <input type="text" name="visitor_name" value="{{ user.first_name }}"
+                    style="width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                    placeholder="Enter visitor name" required>
+            </div>
+
+            <!-- Phone -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">
+                    Phone Number <span style="color: #dc2626;">*</span>
+                </label>
+                <input type="tel" name="visitor_phone" value="{{ user.contact }}"
+                    style="width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                    placeholder="Enter phone number" required>
+            </div>
+
+            <!-- Number of Tickets -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; font-size: 14px; font-weight: 600; color: #374151; margin-bottom: 6px;">
+                    Number of Tickets <span style="color: #dc2626;">*</span>
+                </label>
+                <input type="number" name="num_tickets" value="1" min="1" max="10"
+                    style="width: 100%; padding: 10px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 14px; outline: none; box-sizing: border-box;"
+                    id="num_tickets" onchange="updateTotal()" required>
+            </div>
+
+            <!-- Total Amount -->
+            <div style="background: #f9fafb; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 14px; color: #6b7280;">Price per ticket</span>
+                    <span style="font-size: 14px; color: #374151;">₹{{ amenity.ticket_price }}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 1px solid #e5e7eb;">
+                    <span style="font-size: 16px; font-weight: 700; color: #1a1a2e;">Total Amount</span>
+                    <span style="font-size: 20px; font-weight: 700; color: #1a7a6e;" id="total_amount">₹{{ amenity.ticket_price }}</span>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit"
+                style="width: 100%; background: #1a7a6e; color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                🎟️ Confirm Booking
+            </button>
+
+            <a href="{% url 'amenity:detail' amenity.pk %}"
+               style="display: block; text-align: center; margin-top: 12px; color: #6b7280; font-size: 14px; text-decoration: none;">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+
+<script>
+    const pricePerTicket = {{ amenity.ticket_price }};
+
+    function updateTotal() {
+        const num = parseInt(document.getElementById('num_tickets').value) || 1;
+        const total = num * pricePerTicket;
+        document.getElementById('total_amount').textContent = '₹' + total;
+    }
+</script>
+{% endblock %}

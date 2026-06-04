@@ -1,0 +1,322 @@
+[
+  {
+    "model": "amenity.amenity",
+    "pk": 1,
+    "fields": {
+      "name": "Ana Sagar Lake",
+      "type": "lake",
+      "address": "Ana Sagar, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "A beautiful artificial lake built by Anaji, grandfather of Prithviraj Chauhan in the 12th century.",
+      "image": "",
+      "latitude": 26.4728,
+      "longitude": 74.6200,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 2,
+    "fields": {
+      "name": "Foy Sagar Lake",
+      "type": "lake",
+      "address": "Foy Sagar Road, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "A scenic artificial lake built in 1891-92 as a famine relief project.",
+      "image": "",
+      "latitude": 26.4456,
+      "longitude": 74.5894,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 3,
+    "fields": {
+      "name": "Ajmer Government Museum",
+      "type": "museum",
+      "address": "Akbari Fort, Dargah Road, Ajmer, Rajasthan 305001",
+      "contact": "0145-2627009",
+      "website": "",
+      "description": "Located in Akbar's palace, this museum houses Mughal and Rajput artifacts, sculptures and armory.",
+      "image": "",
+      "latitude": 26.4551,
+      "longitude": 74.6391,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 4,
+    "fields": {
+      "name": "Dargah Sharif (Ajmer Sharif)",
+      "type": "historical",
+      "address": "Dargah Bazaar, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "Famous shrine of Sufi saint Khwaja Moinuddin Chishti, one of the most sacred Muslim pilgrimage sites in India.",
+      "image": "",
+      "latitude": 26.4558,
+      "longitude": 74.6378,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 5,
+    "fields": {
+      "name": "Taragarh Fort",
+      "type": "historical",
+      "address": "Taragarh Hill, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "One of the oldest hill forts in India, built in 1354 AD. Offers panoramic views of Ajmer city.",
+      "image": "",
+      "latitude": 26.4632,
+      "longitude": 74.6276,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 6,
+    "fields": {
+      "name": "Adhai Din Ka Jhonpra",
+      "type": "historical",
+      "address": "Near Dargah, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "A mosque built in 1153 AD, one of the earliest examples of Indo-Islamic architecture in India.",
+      "image": "",
+      "latitude": 26.4574,
+      "longitude": 74.6356,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 7,
+    "fields": {
+      "name": "Nasiyan Jain Temple (Red Temple)",
+      "type": "temple",
+      "address": "Prithviraj Marg, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "A famous Jain temple also known as the Golden Temple, featuring golden dioramas of Jain cosmology.",
+      "image": "",
+      "latitude": 26.4499,
+      "longitude": 74.6359,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 8,
+    "fields": {
+      "name": "Akbari Fort & Palace",
+      "type": "historical",
+      "address": "Dargah Road, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "Built by Emperor Akbar in 1570, this fort served as his residence during military campaigns.",
+      "image": "",
+      "latitude": 26.4548,
+      "longitude": 74.6388,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 9,
+    "fields": {
+      "name": "Mayo College",
+      "type": "college",
+      "address": "Mayo College Road, Ajmer, Rajasthan 305001",
+      "contact": "0145-2631204",
+      "website": "https://www.mayocollege.com",
+      "description": "One of India's most prestigious boarding schools, founded in 1875. Also known as the Eton of the East.",
+      "image": "",
+      "latitude": 26.4382,
+      "longitude": 74.6425,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 10,
+    "fields": {
+      "name": "MDS University Ajmer",
+      "type": "university",
+      "address": "Madhav Nagar, Ajmer, Rajasthan 305009",
+      "contact": "0145-2787050",
+      "website": "https://www.mdsuajmer.ac.in",
+      "description": "Maharshi Dayanand Saraswati University, a major state university serving Ajmer and surrounding districts.",
+      "image": "",
+      "latitude": 26.4124,
+      "longitude": 74.6401,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 11,
+    "fields": {
+      "name": "Subhash Udyan Park",
+      "type": "park",
+      "address": "Near Collectorate, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "https://www.indiavideo.org/rajasthan/travel/subhash-udyan-ajmer-5384.php",
+      "description": "A well-maintained public park in the heart of Ajmer city, popular for morning walks.",
+      "image": "",
+      "latitude": 26.4467,
+      "longitude": 74.6401,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 12,
+    "fields": {
+      "name": "Company Garden",
+      "type": "park",
+      "address": "Company Bagh, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "A historic garden established during British colonial era, popular among locals and tourists.",
+      "image": "",
+      "latitude": 26.4712,
+      "longitude": 74.6356,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 13,
+    "fields": {
+      "name": "Ajmer Municipal Corporation (Townhall)",
+      "type": "townhall",
+      "address": "Naya Bazaar, Ajmer, Rajasthan 305001",
+      "contact": "0145-2425002",
+      "website": "",
+      "description": "The main civic administrative building of Ajmer city.",
+      "image": "",
+      "latitude": 26.4510,
+      "longitude": 74.6420,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 14,
+    "fields": {
+      "name": "Sophia School Ajmer",
+      "type": "school",
+      "address": "Sophia School Road, Ajmer, Rajasthan 305001",
+      "contact": "0145-2624224",
+      "website": "",
+      "description": "One of the premier schools in Ajmer, run by the Congregation of Jesus.",
+      "image": "",
+      "latitude": 26.4445,
+      "longitude": 74.6398,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 15,
+    "fields": {
+      "name": "St. Anselm's School",
+      "type": "school",
+      "address": "Station Road, Ajmer, Rajasthan 305001",
+      "contact": "0145-2620090",
+      "website": "",
+      "description": "A well-known English medium school in Ajmer established by Christian missionaries.",
+      "image": "",
+      "latitude": 26.4476,
+      "longitude": 74.6441,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 16,
+    "fields": {
+      "name": "Pushkar Lake",
+      "type": "lake",
+      "address": "Pushkar, Ajmer, Rajasthan 305022",
+      "contact": "",
+      "website": "",
+      "description": "One of the five sacred dhams in Hinduism, this lake is surrounded by 52 ghats and 400 temples.",
+      "image": "",
+      "latitude": 26.4897,
+      "longitude": 74.5511,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 17,
+    "fields": {
+      "name": "Brahma Temple Pushkar",
+      "type": "temple",
+      "address": "Pushkar, Ajmer, Rajasthan 305022",
+      "contact": "",
+      "website": "",
+      "description": "One of the very few temples dedicated to Lord Brahma in the world, located in Pushkar.",
+      "image": "",
+      "latitude": 26.4893,
+      "longitude": 74.5517,
+      "is_featured": true
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 18,
+    "fields": {
+      "name": "Savitri Temple",
+      "type": "temple",
+      "address": "Ratnagiri Hill, Pushkar, Ajmer, Rajasthan 305022",
+      "contact": "",
+      "website": "",
+      "description": "Ancient temple dedicated to Goddess Savitri, located on top of Ratnagiri Hill in Pushkar.",
+      "image": "",
+      "latitude": 26.4932,
+      "longitude": 74.5468,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 19,
+    "fields": {
+      "name": "Ajmer Sharif Dargah Museum",
+      "type": "museum",
+      "address": "Dargah Bazaar, Ajmer, Rajasthan 305001",
+      "contact": "",
+      "website": "",
+      "description": "A small museum near the Dargah Sharif showcasing relics and history of the shrine.",
+      "image": "",
+      "latitude": 26.4561,
+      "longitude": 74.6381,
+      "is_featured": false
+    }
+  },
+  {
+    "model": "amenity.amenity",
+    "pk": 20,
+    "fields": {
+      "name": "Government College Ajmer",
+      "type": "college",
+      "address": "College Road, Ajmer, Rajasthan 305001",
+      "contact": "0145-2627145",
+      "website": "",
+      "description": "One of the oldest government colleges in Rajasthan, offering undergraduate and postgraduate courses.",
+      "image": "",
+      "latitude": 26.4489,
+      "longitude": 74.6378,
+      "is_featured": false
+    }
+  }
+]

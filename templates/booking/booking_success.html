@@ -1,0 +1,23 @@
+{% extends "booking/base.html" %}
+
+{% block title %}Booking Success{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1>Booking Successful!</h1>
+
+    <p>
+        Your booking has been confirmed successfully.
+    </p>
+
+    <a href="{% url 'booking:my_bookings' %}" class="btn">
+        View My Bookings
+    </a>
+
+    <a href="{% url 'booking:amenity_list' %}" class="btn">
+        Book Another
+    </a>
+
+</div>
+{% endblock %}

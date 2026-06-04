@@ -1,0 +1,91 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ hospital.name }} — AjmerConnect{% endblock %}
+
+{% block content %}
+<div style="max-width:1000px; margin:40px auto; padding:0 20px;">
+
+    <!-- Back button -->
+    <a href="{% url 'hospital:public_list' %}"
+       style="color:#1a7a6e; text-decoration:none; font-size:14px;">← Back to Hospitals</a>
+
+    <!-- Hospital Info Card -->
+    <div style="background:#fff; border-radius:14px; box-shadow:0 2px 16px rgba(0,0,0,0.08); padding:32px; margin:20px 0;">
+        <h2 style="margin:0 0 12px; color:#1a1a2e;">🏥 {{ hospital.name }}</h2>
+        <p style="color:#555; margin:6px 0;">📍 {{ hospital.address }}</p>
+        <p style="color:#555; margin:6px 0;">📞 {{ hospital.phone }}</p>
+        <p style="color:#555; margin:6px 0;">✉️ {{ hospital.email }}</p>
+        {% if hospital.latitude and hospital.longitude %}
+        <a href="https://www.google.com/maps?q={{ hospital.latitude }},{{ hospital.longitude }}"
+           target="_blank"
+           style="display:inline-block; margin-top:12px; background:#1a7a6e; color:#fff; padding:8px 20px; border-radius:8px; text-decoration:none;">
+            📍 Get Directions
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Doctors -->
+    <h3 style="margin:32px 0 16px;">👨‍⚕️ Our Doctors</h3>
+    {% if doctors %}
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:16px;">
+        {% for doctor in doctors %}
+        <div style="background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:20px;">
+            <h4 style="margin:0 0 6px; color:#1a1a2e;">Dr. {{ doctor.name }}</h4>
+            <p style="color:#1a7a6e; margin:4px 0; font-size:14px;">{{ doctor.specialization }}</p>
+            <p style="color:#666; margin:4px 0; font-size:13px;">Experience: {{ doctor.experience }} years</p>
+            <p style="color:#666; margin:4px 0; font-size:13px;">Fee: ₹{{ doctor.consultation_fee }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="color:#888;">No doctors listed yet.</p>
+    {% endif %}
+
+    <!-- Available Slots -->
+    <h3 style="margin:32px 0 16px;">🗓️ Available Slots</h3>
+    {% if slots %}
+    <div style="background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.07); overflow:hidden;">
+        <table style="width:100%; border-collapse:collapse;">
+            <thead style="background:#1a7a6e; color:#fff;">
+                <tr>
+                    <th style="padding:12px 16px; text-align:left;">Doctor</th>
+                    <th style="padding:12px 16px; text-align:left;">Date</th>
+                    <th style="padding:12px 16px; text-align:left;">Time</th>
+                    <th style="padding:12px 16px; text-align:left;">Available</th>
+                    <th style="padding:12px 16px; text-align:left;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for slot in slots %}
+                <tr style="border-bottom:1px solid #f0f0f0;">
+                    <td style="padding:12px 16px;">Dr. {{ slot.doctor.name }}</td>
+                    <td style="padding:12px 16px;">{{ slot.date }}</td>
+                    <td style="padding:12px 16px;">{{ slot.start_time }} - {{ slot.end_time }}</td>
+                    <td style="padding:12px 16px;">{{ slot.available_slots }} slots</td>
+                    <td style="padding:12px 16px;">
+                        {% if user.is_authenticated %}
+                            {% if slot.available_slots > 0 %}
+                            <a href="{% url 'hospital:book_appointment' hospital.id %}"
+                               style="background:#1a7a6e; color:#fff; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:13px;">
+                                Book
+                            </a>
+                            {% else %}
+                            <span style="color:#e74c3c; font-size:13px;">Full</span>
+                            {% endif %}
+                        {% else %}
+                        <a href="{% url 'core:user_login' %}?next={{ request.path }}"
+                           style="background:#f0f0f0; color:#333; padding:6px 14px; border-radius:6px; text-decoration:none; font-size:13px;">
+                            Login to Book
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p style="color:#888;">No available slots right now.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

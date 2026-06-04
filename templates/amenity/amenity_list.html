@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Amenities – AjmerConnect{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/amenity.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="amenity-section">
+    <h2 class="section-title">Amenities{% if amenity_type %} - {{ amenity_type|title }}{% endif %}</h2>
+
+    <!-- Amenity type filters -->
+    <div class="amenity-filters">
+        <a href="{% url 'amenity:list' %}?type=park">Park</a>
+        <a href="{% url 'amenity:list' %}?type=museum">Museum</a>
+        <a href="{% url 'amenity:list' %}?type=lake">Lake</a>
+        <a href="{% url 'amenity:list' %}?type=hotel">Hotel</a>
+        <a href="{% url 'amenity:list' %}?type=resort">Resort</a>
+        <a href="{% url 'amenity:list' %}?type=university">University</a>
+        <a href="{% url 'amenity:list' %}?type=townhall">Townhall</a>
+        <a href="{% url 'amenity:list' %}?type=temple">Temple</a>
+        <a href="{% url 'amenity:list' %}?type=historical">Historical Place</a>
+        <a href="{% url 'amenity:list' %}?type=restaurant">Restaurant</a>
+        <a href="{% url 'amenity:list' %}?type=school">School</a>
+    </div>
+
+    <!-- Amenities table -->
+    <div class="table-wrapper">
+        <table class="amenity-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <th>Website</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for amenity in amenities %}
+                <tr>
+                    <td>{{ amenity.name }}</td>
+                    <td>{{ amenity.get_type_display }}</td>
+                    <td>{{ amenity.address }}</td>
+                    <td>{{ amenity.contact }}</td>
+                    <td>
+                        {% if amenity.website %}
+                            <a href="{{ amenity.website }}" target="_blank">Visit</a>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'amenity:detail' amenity.pk %}" class="btn btn-detail">View</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="no-amenities">No amenities found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

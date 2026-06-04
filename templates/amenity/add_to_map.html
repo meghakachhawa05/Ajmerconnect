@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+    <div style="border: 3px solid black; border-radius: 16px; padding: 2rem 3rem; background: #fff; min-width: 350px;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Add To Map</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div style="margin-bottom: 1rem;">
+                {{ form.name.label_tag }}<br>
+                {{ form.name }}
+            </div>
+            <div style="margin-bottom: 1rem;">
+                {{ form.latitude.label_tag }}<br>
+                {{ form.latitude }}
+            </div>
+            <div style="margin-bottom: 1rem;">
+                {{ form.longitude.label_tag }}<br>
+                {{ form.longitude }}
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" style="background: green; color: white; padding: 0.5rem 2rem; border: none; border-radius: 6px; font-size: 1.1rem;">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

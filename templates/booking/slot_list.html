@@ -1,0 +1,27 @@
+{% extends "booking/base.html" %}
+{% block title %}Slots{% endblock %}
+
+{% block content %}
+<h2>Available Slots</h2>
+
+{% for slot in slots %}
+    <div class="card">
+        <h4>{{ slot.venue.name }}</h4>
+        <p>
+            Date: {{ slot.date }} <br>
+            Time: {{ slot.start_time }} - {{ slot.end_time }} <br>
+            Capacity: {{ slot.capacity }} <br>
+            Booked: {{ slot.booked_count }}
+        </p>
+
+        {% if slot.is_available %}
+            <a href="{% url 'create_booking' slot.id %}" class="btn">Book Ticket</a>
+        {% else %}
+            <span class="full">Slot Full</span>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No slots available</p>
+{% endfor %}
+
+{% endblock %}

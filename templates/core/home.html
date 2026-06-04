@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}AjmerConnect – Your City, Your Guide{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/home.css' %}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+{% endblock %}
+
+{% block content %}
+
+<div class="home-container">
+
+    <!-- ================= HERO SECTION ================= -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>Welcome to AjmerConnect</h1>
+            <p>
+                Your complete city guide for Ajmer — hospitals, schools,
+                amenities, and essential services in one place.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'hospital:hospital_list' %}" class="btn">🏥 Hospitals</a>
+                <a href="{% url 'amenity:list' %}" class="btn">🏢 Amenities</a>
+                <a href="{% url 'core:map' %}" class="btn">🗺️ City Map</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= MAIN GRID SECTION ================= -->
+    <section class="main-grid">
+
+        <!-- FEATURED (DYNAMIC) -->
+        <div class="featured-section">
+            <h2>Explore Ajmer</h2>
+
+            <div class="featured-grid">
+                {% for amenity in featured_amenities %}
+                    <div class="entity-card">
+
+                        {% if amenity.image %}
+                            <img src="{{ amenity.image.url }}" alt="{{ amenity.name }}">
+                        {% else %}
+                            <img src="{% static 'core/img/default.jpg' %}" alt="No image">
+                        {% endif %}
+
+                        <div class="entity-info">
+                            <h3 class="entity-title">{{ amenity.name }}</h3>
+                            <p class="entity-type">{{ amenity.get_type_display }}</p>
+                        </div>
+
+                    </div>
+                {% empty %}
+                    <p>No amenities available</p>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <!-- MAP -->
+        <div class="map-section">
+            <h2>Ajmer on the Map</h2>
+            <div id="map" style="height: 400px; border-radius: 12px;"></div>
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = L.map('map').setView([26.4499, 74.6399], 13);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        L.marker([26.4499, 74.6399])
+            .addTo(map)
+            .bindPopup('<b>Ajmer City</b><br>Rajasthan, India')
+            .openPopup();
+    });
+</script>
+{% endblock %}
