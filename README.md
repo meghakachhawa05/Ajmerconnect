@@ -212,4 +212,7 @@ Ajmerconnect/
 
 ## 📸 Project Workflow
 
+![User Workflow](https://github.com/user-attachments/assets/d1e30af8-b24f-49c4-83e1-d317fb5e1079)
+
+
 ![Workflow](docs/workflow.png.png)
