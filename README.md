@@ -207,6 +207,13 @@ Ajmerconnect/
 ## 🙏 Built With ❤️ for the City of Ajmer
 
 > **Note**: Add your actual email and contact details before deploying to production.
+
+## 📸 Project Workflow
+
+![Workflow](docs/workflow.png.png)
+
+
+
 ## 📸 snapshots
 
 ### 🏠 Home & Authentication
@@ -255,6 +262,3 @@ Ajmerconnect/
 ![Workflow](snapshots/workflow.png)
 
 
-## 📸 Project Workflow
-
-![Workflow](docs/workflow.png.png)
