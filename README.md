@@ -207,12 +207,54 @@ Ajmerconnect/
 ## 🙏 Built With ❤️ for the City of Ajmer
 
 > **Note**: Add your actual email and contact details before deploying to production.
+## 📸 snapshots
 
+### 🏠 Home & Authentication
+![Home](snapshots/homepage.png)
+![Login](snapshots/loginpage.png)
+![Register 1](snapshots/registerationform1.png)
+![Register 2](snapshots/registerationform2.png)
+
+### 🗺️ Interactive Map
+![Map](snapshots/interactivemap.png)
+
+### 🏥 Hospitals
+![Hospitals](snapshots/hospitals.png)
+![Hospital Admin](snapshots/hospitaljln_admin.png)
+![Add Doctor](snapshots/adddoctor.png)
+![Create Slot](snapshots/createslot.png)
+![Manage Slot](snapshots/manageslot.png)
+![Slot Detail](snapshots/hospitalslot_detail.png)
+![Book Appointment 1](snapshots/bookappointment1.png)
+![Book Appointment 2](snapshots/bookappointment2.png)
+![Appointment Confirmed](snapshots/appointment_confirmed.png)
+![Admin Appointments](snapshots/adminappointments.png)
+
+### 🎫 Amenities & Booking
+![Amenities](snapshots/amenities.png)
+![Amenity Booking 1](snapshots/amenity_booking1.png)
+![Amenity Booking 2](snapshots/amenity-booking2.png)
+![Booking Summary](snapshots/booking_summary.png)
+![Confirm Booking](snapshots/confirm_booking.png)
+![Booking Details](snapshots/booking_details.png)
+
+### 💳 Payment & PDF
+![Payment Success](snapshots/pyment_success.png)
+![PDF Ticket](snapshots/pdf.png)
+
+### 👤 User & Admin
+![User Profile](snapshots/userprofile.png)
+![Ticket Admin](snapshots/ticketadmin.png)
+![Ticket Dashboard](snapshots/ticketdashboard.png)
+![Admin Amenities](snapshots/admin_amenities.png)
+![Amenities Bookings](snapshots/amenities_bookings.png)
+![Add Amenity](snapshots/addamenity.png)
+![Add to Map](snapshots/addtomap.png)
+
+### 📊 Project Workflow
+![Workflow](snapshots/workflow.png)
 
 
 ## 📸 Project Workflow
-
-![User Workflow](https://github.com/user-attachments/assets/d1e30af8-b24f-49c4-83e1-d317fb5e1079)
-
 
 ![Workflow](docs/workflow.png.png)
